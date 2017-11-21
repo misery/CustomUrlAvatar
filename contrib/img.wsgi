@@ -91,7 +91,7 @@ def get_final_image(form):
 	user = unknown
 	if 'user' in form:
 		user = form['user'].value.lower()
-		if mail_suffix in user:
+		if mail_suffix in user or '.' in user:
 			user = user.split('@')[0].replace('<', '')
 
 			full = user.replace('.', '')
