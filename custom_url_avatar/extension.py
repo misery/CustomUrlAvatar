@@ -45,8 +45,15 @@ class CustomAvatarService(AvatarService):
         return {
             '1x': mark_safe(
                 self._extension.settings[CONFIG_CUSTOM_URL].format(
-               scheme='https' if request.is_secure() else 'http',
-               host=request.get_host(),
+               user=user,
+               size=size,
+            ))
+        }
+
+    def get_avatar_urls_uncached(self, user, size=None):
+        return {
+            '1x': mark_safe(
+                self._extension.settings[CONFIG_CUSTOM_URL].format(
                user=user,
                size=size,
             ))
@@ -64,7 +71,7 @@ class CustomUrlAvatar(Extension):
 
     is_configurable = True
     default_settings = {
-        CONFIG_CUSTOM_URL: '{scheme}://{host}/img/?user={user}&s={size}',
+        CONFIG_CUSTOM_URL: 'https://img.local/?user={user}&s={size}',
     }
 
 
