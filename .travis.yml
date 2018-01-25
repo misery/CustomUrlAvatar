@@ -9,3 +9,4 @@ install:
 
 script:
   - pip install .
+  - flake8 custom_url_avatar/*.py

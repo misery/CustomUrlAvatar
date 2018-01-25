@@ -2,8 +2,6 @@
 
 from __future__ import unicode_literals
 
-from django.conf import settings
-from django.conf.urls import patterns, include
 from django.utils.html import mark_safe
 
 from reviewboard.extensions.base import Extension
@@ -14,6 +12,7 @@ from reviewboard.extensions.base import get_extension_manager
 from reviewboard.extensions.hooks import AvatarServiceHook
 
 CONFIG_CUSTOM_URL = 'custom_url'
+
 
 class CustomAvatarService(AvatarService):
     def __init__(self, settings_manager):
@@ -42,21 +41,15 @@ class CustomAvatarService(AvatarService):
             dict:
             A dictionary of avatars.
         """
+        url = self._extension.settings[CONFIG_CUSTOM_URL]
         return {
-            '1x': mark_safe(
-                self._extension.settings[CONFIG_CUSTOM_URL].format(
-               user=user,
-               size=size,
-            ))
+            '1x': mark_safe(url.format(user=user, size=size))
         }
 
     def get_avatar_urls_uncached(self, user, size=None):
+        url = self._extension.settings[CONFIG_CUSTOM_URL]
         return {
-            '1x': mark_safe(
-                self._extension.settings[CONFIG_CUSTOM_URL].format(
-               user=user,
-               size=size,
-            ))
+            '1x': mark_safe(url.format(user=user, size=size))
         }
 
     def get_etag_data(self, user):
@@ -74,7 +67,5 @@ class CustomUrlAvatar(Extension):
         CONFIG_CUSTOM_URL: 'https://img.local/?user={user}&s={size}',
     }
 
-
     def initialize(self):
         AvatarServiceHook(self, CustomAvatarService)
-
