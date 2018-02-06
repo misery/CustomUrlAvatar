@@ -238,7 +238,9 @@ class ImageProvider(object):
         thumbnail = self.cache.gen + '/' + file.getFile() + '_' + str(size)
         if not os.path.exists(thumbnail):
             with Image.open(file.getPath()) as f:
-                r = f.resize((size, size), Image.LANCZOS)
+                r = f
+                r = r.convert('RGBA' if 'PNG' in f.format else 'RGB')
+                r = r.resize((size, size), Image.LANCZOS)
                 r.save(thumbnail, f.format)
 
         return self.cache.CacheFile(thumbnail)
