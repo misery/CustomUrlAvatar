@@ -41,10 +41,7 @@ class CustomAvatarService(AvatarService):
             dict:
             A dictionary of avatars.
         """
-        url = self._extension.settings[CONFIG_CUSTOM_URL]
-        return {
-            '1x': mark_safe(url.format(user=user, size=size))
-        }
+        return self.get_avatar_urls_uncached(user, size)
 
     def get_avatar_urls_uncached(self, user, size=None):
         url = self._extension.settings[CONFIG_CUSTOM_URL]
