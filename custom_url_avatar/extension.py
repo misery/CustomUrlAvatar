@@ -46,7 +46,9 @@ class CustomAvatarService(AvatarService):
     def get_avatar_urls_uncached(self, user, size=None):
         url = self._extension.settings[CONFIG_CUSTOM_URL]
         return {
-            '1x': mark_safe(url.format(user=user, size=size))
+            '%dx' % resolution: mark_safe(
+                url.format(user=user, size=(size * resolution)))
+            for resolution in (1, 2, 3)
         }
 
     def get_etag_data(self, user):
