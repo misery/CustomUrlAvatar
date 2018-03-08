@@ -50,7 +50,7 @@ class CustomAvatarService(AvatarService):
         }
 
     def get_etag_data(self, user):
-        return [self.avatar_service_id, user.email]
+        return [self.avatar_service_id, user.username]
 
 
 class CustomUrlAvatar(Extension):
