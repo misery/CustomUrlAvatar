@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from reviewboard.extensions.packaging import setup
 
 
-PACKAGE = "CustomUrlAvatar"
+PACKAGE = "rbCustomUrlAvatar"
 VERSION = "0.3"
 
 setup(
