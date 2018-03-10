@@ -4,16 +4,18 @@ from reviewboard.extensions.packaging import setup
 
 
 PACKAGE = "rbCustomUrlAvatar"
-VERSION = "0.4.1"
+VERSION = "0.5"
 
 setup(
     name=PACKAGE,
     version=VERSION,
-    description="Review Board extension: CustomUrlAvatar",
-    author="Andre Klitzing",
-    packages=[str("custom_url_avatar")],
+    description='Review Board extension: CustomUrlAvatar',
+    author='Andre Klitzing',
+    author_email='aklitzing@gmail.com',
+    url='https://github.com/misery/CustomUrlAvatar',
+    packages=[str('custom_url_avatar')],
     install_requires=[
-        'reviewboard>=3',
+        'reviewboard>=3.0',
     ],
     entry_points={
         'reviewboard.extensions':
