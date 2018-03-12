@@ -232,6 +232,11 @@ class ImageProvider(object):
         return None
 
     def _resize(self, file, size):
+        maxSize = os.environ.get('IMAGE_MAX_SIZE')
+        maxSize = 1000 if maxSize is None else int(maxSize)
+        if size > maxSize:
+            size = maxSize
+
         if not self.cache.gen:
             return file
 
