@@ -47,7 +47,7 @@ class CustomAvatarService(AvatarService):
         url = self._extension.settings[CONFIG_CUSTOM_URL]
         return {
             '%dx' % resolution: mark_safe(
-                url.format(user=user, size=(size * resolution)))
+                url.format(user=user, size='' if size is None else (int(size) * resolution)))
             for resolution in (1, 2, 3)
         }
 
