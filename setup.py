@@ -4,7 +4,7 @@ from reviewboard.extensions.packaging import setup
 
 
 PACKAGE = "rbCustomUrlAvatar"
-VERSION = "0.5"
+VERSION = "0.6"
 
 setup(
     name=PACKAGE,
