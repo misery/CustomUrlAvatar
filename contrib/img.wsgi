@@ -301,14 +301,14 @@ def application(environ, start_response):
     search = None
     if 'user' in form:
         p.addExtractor(MailExtractor)
-        search = form['user'].value.lower()
+        search = form.getfirst('user').lower()
     elif 'md5' in form:
         p.addExtractor(ReviewBoardExtractor)
-        search = form['md5'].value.lower()
+        search = form.getfirst('md5').lower()
 
     size = None
     if 's' in form:
-        s = form['s'].value
+        s = form.getfirst('s')
         if s.isdigit():
             size = int(s)
 
