@@ -270,7 +270,7 @@ class ImageProvider(object):
 def application(environ, start_response):
     import cgi
 
-    def generateHeader(file):
+    def generateHeader(file=None):
         header = []
 
         size = '0'
@@ -296,6 +296,10 @@ def application(environ, start_response):
         fp=environ['wsgi.input'],
         environ=environ,
         keep_blank_values=True)
+
+    if not form:
+        start_response('405 Method Not Allowed', generateHeader())
+        return []
 
     p = ImageProvider()
     search = None
