@@ -301,10 +301,10 @@ def application(environ, start_response):
     search = None
     if 'user' in form:
         p.addExtractor(MailExtractor)
-        search = form.getfirst('user').lower()
+        search = form.getfirst('user')
     elif 'md5' in form:
         p.addExtractor(ReviewBoardExtractor)
-        search = form.getfirst('md5').lower()
+        search = form.getfirst('md5')
 
     size = None
     if 's' in form:
@@ -314,6 +314,7 @@ def application(environ, start_response):
 
     cFile = None
     if search:
+        search = search.lower()
         cFile = p.getImagePath(search, size)
 
     status = '404 Not Found'
