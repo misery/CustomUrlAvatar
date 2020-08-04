@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 """
 Face detector to create .square files
 from rectangle images with a face.
@@ -11,7 +11,7 @@ from jpg files with jpegoptim.
 
 Maybe you can try pngquant for png!
 
-python2 face_detect.py klitzing.jpg
+python face_detect.py klitzing.jpg
 """
 
 import cv2
@@ -98,7 +98,7 @@ def start(args):
         cascPath = [args[2]]
     else:
         cascPath = []
-        path = '/usr/share/opencv/haarcascades/'
+        path = '/usr/share/opencv4/haarcascades/'
         cascPath.append(path + 'haarcascade_eye.xml')
         # cascPath.append(path + 'haarcascade_mcs_eyepair_big.xml')
         cascPath.append(path + 'haarcascade_frontalface_alt.xml')
