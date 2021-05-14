@@ -1,10 +1,8 @@
-from __future__ import unicode_literals
-
 from reviewboard.extensions.packaging import setup
 
 
 PACKAGE = "rbCustomUrlAvatar"
-VERSION = "0.6.1"
+VERSION = "1.0.0"
 
 setup(
     name=PACKAGE,
@@ -22,7 +20,7 @@ setup(
             '%s = custom_url_avatar.extension:CustomUrlAvatar' % PACKAGE,
     },
     package_data={
-        b'custom_url_avatar': [
+        'custom_url_avatar': [
             'templates/custom_url_avatar/*.txt',
             'templates/custom_url_avatar/*.html',
         ],

@@ -1,7 +1,5 @@
 # CustomUrlAvatar Extension for Review Board.
 
-from __future__ import unicode_literals
-
 from django.utils.html import mark_safe
 
 from reviewboard.extensions.base import Extension

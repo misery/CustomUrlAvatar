@@ -1,19 +1,15 @@
-from __future__ import unicode_literals
+"""Admin URLs for the extension."""
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
+from reviewboard.extensions.views import configure_extension
 
 from custom_url_avatar.extension import CustomUrlAvatar
 from custom_url_avatar.forms import CustomUrlAvatarSettingsForm
 
 
-urlpatterns = patterns(
-    '',
-
-    url(r'^$',
-        'reviewboard.extensions.views.configure_extension',
-        {
-            'ext_class': CustomUrlAvatar,
-            'form_class': CustomUrlAvatarSettingsForm,
-        },
-        name='custom_url_avatar-configure'),
-)
+urlpatterns = [
+    url(r'^$', configure_extension, {
+        'ext_class': CustomUrlAvatar,
+        'form_class': CustomUrlAvatarSettingsForm,
+    }, name='custom_url_avatar-configure'),
+]
