@@ -125,7 +125,7 @@ class ReviewBoardExtractor(Extractor):
             self.hash = hash
             self.user = None
             self.next = rbhost + ('/api/users/'
-                                  '?only-links=&only-fields=username,email')
+                                  '?only-links=&only-fields=username,email,')
             self.data = None
             env = 'REVIEWBOARD_MAIL_TLD'
             self.tld = os.environ[env] if env in os.environ else ['de', 'com']
@@ -134,7 +134,13 @@ class ReviewBoardExtractor(Extractor):
             try:
                 http = urllib3.PoolManager(cert_reqs='CERT_REQUIRED',
                                            ca_certs=certifi.where())
-                r = http.request('GET', self.next)
+
+                env = 'REVIEWBOARD_API_TOKEN'
+                headers = None
+                if os.environ[env]:
+                    headers = {'Authorization': 'token %s' % os.environ[env]}
+
+                r = http.request('GET', self.next, headers=headers)
                 self.data = r.data if r.status == 200 else None
                 if self.data is None:
                     self.next = None
@@ -150,7 +156,7 @@ class ReviewBoardExtractor(Extractor):
 
             for entry in self.tld:
                 sum = hashlib.md5()
-                sum.update(mail + '.' + entry)
+                sum.update(mail.encode('utf-8') + b'.' + entry.encode('utf-8'))
                 if sum.hexdigest().lower() == self.hash:
                     return True
 
