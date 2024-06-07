@@ -2,7 +2,7 @@ from reviewboard.extensions.packaging import setup
 
 
 PACKAGE = "rbCustomUrlAvatar"
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 
 setup(
     name=PACKAGE,
@@ -13,7 +13,7 @@ setup(
     url='https://github.com/misery/CustomUrlAvatar',
     packages=[str('custom_url_avatar')],
     install_requires=[
-        'reviewboard>=3.0',
+        'reviewboard>=6.0',
     ],
     entry_points={
         'reviewboard.extensions':
