@@ -303,7 +303,7 @@ def application(environ, start_response):
         environ=environ,
         keep_blank_values=True)
 
-    if not form:
+    if form is None:
         start_response('405 Method Not Allowed', generateHeader())
         return []
 
